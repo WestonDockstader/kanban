@@ -14,13 +14,15 @@
             </div>
         </div>
         <div class="row">
-            <div v-for="list in lists[board._id]" class="list col-3 ml-2 mr-2">
+            <div v-for="list in lists[board._id]" class="list col-3 m-1">
                 <h2 class="list-title">{{list.title}}</h2>
-                <form @submit.prevent="createTask(list)" :key="list._id" class="float-left">
-                    <input type="text" name="body" v-model="task.body" placeholder="Create a task">
-                    <button type="submit">Add Task</button>
-                </form>
-                <button @click="deleteList(list)">Delete this list</button>
+                <div class="row justify-content-center">
+                    <form @submit.prevent="createTask(list)" :key="list._id" style="padding-right: 5px;">
+                        <input type="text" name="body" v-model="task.body" placeholder="Create a task">
+                        <button type="submit">Add Task</button>
+                    </form>
+                    <button @click="deleteList(list)">Delete this list</button>
+                </div>
                 <hr>
                 <div v-if="taskList[list._id]">
                     <tasks :list="taskList[list._id]" :lists="lists[board._id]"></tasks>
@@ -98,6 +100,7 @@
 
 <style>
     .board-title {
+        background-color: rgba(100,100,100,0.6);
         border-style: double;
         display: inline-block;
         margin: 1rem 0 1rem 0;
@@ -105,9 +108,10 @@
     }
     .list{
         background-color: rgba(100,100,100,0.6);
-        height: 6rem;
-        margin: 2rem;
+        border-radius: 15px;
         height: 100%;
+        width: 90%;
+        padding: 0.5rem;
     }
     .list-title {
         text-decoration: underline;

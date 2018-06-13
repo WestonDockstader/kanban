@@ -1,8 +1,9 @@
 <template>
-  <div id="app">
+  <div id="app" class="work">
     <h1 class="title">KANBAN VUE</h1>
-
+  
     <router-view/>
+
   </div>
 </template>
 
@@ -15,13 +16,14 @@
 </script>
 
 <style>
-  #app {
+  body {
     font-family: 'Teko', cursive;
     background-image: url("../alex-iby-387646-unsplash.png");
     background-repeat: no-repeat;
-    background-position: center fixed;
+    background-position: center;
     background-size: cover;
-    height: 950px;
+    background-attachment: fixed;
+    height: 100%;
     color: rgb(240, 255, 107);
   }
   
