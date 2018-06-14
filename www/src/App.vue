@@ -18,7 +18,7 @@
 <style>
   body {
     font-family: 'Teko', cursive;
-    background-image: url("../alex-iby-387646-unsplash.png");
+    background-image: url("../alex-iby-387646-unsplash.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
