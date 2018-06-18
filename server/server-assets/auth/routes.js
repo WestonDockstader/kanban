@@ -5,7 +5,7 @@ let session = require('./session')
 let loginError = new Error('Bad Email or Password')
 
 router.post('/auth/register', (req, res) => {
-  if (req.body.password.length < 5) {
+  if (req.body.password.length <= 5) {
     return res.status(400).send({
       error: 'Password must be at least 6 characters'
     })
@@ -27,17 +27,25 @@ router.post('/auth/login', (req, res) => {
       email: req.body.email
     })
     .then(user => {
-      if (!user) {
-        return res.status(400).send(loginError)
-      }
-
-      if (!user.validatePassword(req.body.password)) {
-        return res.status(400).send(loginError)
-      }
-      delete user._doc.password
-      req.session.uid = user._id
-      res.send(user)
-    }).catch(err => {
+      user.validatePassword(req.body.password)
+        .then(valid=>{
+          if(!valid){
+            return res.status(400).send(loginError)
+          }
+          delete user._doc.password
+          req.session.uid = user._id;
+          user.password=null;
+          res.status(200).send({
+            message: 'Successfully logged in',
+            session: req.session.uid,
+            data: user
+          })
+        })
+        .catch(err=>{
+          res.status(400).send({loginError,Msg: "Second Catch"})
+        })
+    })
+    .catch(err => {
       res.status(400).send(loginError)
     })
   })

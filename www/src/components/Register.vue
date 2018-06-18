@@ -2,8 +2,8 @@
     <div class="register">
         <form @submit.prevent="userRegister">
             <input type="text" name="username" id="username" v-model="register.username" placeholder="username">
-            <input type="text" name="email" id="email" v-model="register.email" placeholder="Email Address">
-            <input type="password" name="password" id="password" v-model="register.password" placeholder="Password">
+            <input type="text" name="email" id="email" v-model="register.email" placeholder="Email Address" autocomplete="email">
+            <input type="password" name="password" id="password" v-model="register.password" placeholder="Password" autocomplete="current-password">
             <button type="submit">Register</button>
         </form>
         <button @click="switchLogin">Already a user? Click here to login!</button>

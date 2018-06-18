@@ -22,13 +22,13 @@ vue.use(vuex)
 function createDictionary(arr) {
   var out = {}
   for (let i = 0; i < arr.length; i++) {
-    const task = arr[i];
-    if (!out[task.parentId]) {
-      out[task.parentId] = []
-      out[task.parentId].push(task)
+    const item = arr[i];
+    if (!out[item.parentId]) {
+      out[item.parentId] = []
+      out[item.parentId].push(item)
     }
     else {
-      out[task.parentId].push(task)
+      out[item.parentId].push(item)
     }
   }
   return out
@@ -76,10 +76,11 @@ export default new vuex.Store({
   actions: {
 
     //AUTH STUFF
-    login({ commit, dispatch }, loginCredentials) {
+    login({ commit}, loginCredentials) {
       auth.post('/login', loginCredentials)
         .then(res => {
           console.log("successfully logged in!")
+          console.log(res.data.data)
           commit('setUser', res.data)
           router.push({ name: 'Home' })
         })
@@ -87,7 +88,7 @@ export default new vuex.Store({
           console.log(err)
         })
     },
-    logout({ commit, dispatch }) {
+    logout({ commit }) {
       auth.delete('/logout')
         .then(res => {
           console.log("Successfully logged out!")
@@ -98,7 +99,7 @@ export default new vuex.Store({
           console.log(err)
         })
     },
-    register({ commit, dispatch }, userData) {
+    register(userData) {
       auth.post('/register', userData)
         .then(res => {
           console.log("Registration Successful")
@@ -108,7 +109,7 @@ export default new vuex.Store({
           console.log(err)
         })
     },
-    authenticate({ commit, dispatch }) {
+    authenticate({ commit }) {
       api.get('/authenticate')
         .then(res => {
           commit('setUser', res.data)

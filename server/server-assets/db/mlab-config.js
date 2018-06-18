@@ -1,5 +1,5 @@
 var mongoose = require('mongoose')
-var connectionString = 'mongodb://student:student@ds064188.mlab.com:64188/kanban-vue'
+var connectionString = 'mongodb://guest:guest1@ds263460.mlab.com:63460/kanban-dock'
 var connection = mongoose.connection
 
 

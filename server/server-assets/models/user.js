@@ -16,7 +16,7 @@ schema.statics.generateHash = function (password) {
 }
 
 schema.methods.validatePassword = function (password) {
-  return bcrypt.compare(password, this.hash)
+  return bcrypt.compare(password, this.password)
 }
 
 module.exports = mongoose.model(schemaName, schema)
